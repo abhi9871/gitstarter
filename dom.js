@@ -17,26 +17,34 @@
 
 // GETELEMENTBYID //
 // console.log(document.getElementById('header-title'));
-var headerTitle = document.getElementById('header-title');
+// var headerTitle = document.getElementById('header-title');
 // var header = document.getElementById('main-header');
 // console.log(headerTitle);
 // headerTitle.textContent = "Hello"; 
 // headerTitle.innerText = "Goodbye"; 
 // console.log(headerTitle.innerText);
 // headerTitle.innerHTML = "<h3>Hello</h3>";
-headerTitle.style.borderBottom = "solid 3px #000";
+// headerTitle.style.borderBottom = "solid 3px #000";
 
 // GETELEMENTBYCLASSNAME //
-var items = document.getElementsByClassName('list-group-item');
-items[2].style.backgroundColor = "green";
+// var items = document.getElementsByClassName('list-group-item');
+// items[2].style.backgroundColor = "green";
 
-for(let item of items){
-    item.style.fontWeight = "bold";
-}
+// for(let item of items){
+//     item.style.fontWeight = "bold";
+// }
 
 // var title = document.getElementsByClassName('title');
 // title[0].style.fontWeight = "bold";
 // title[0].style.color = "green";
+
+// GETELEMENTSBYTAGNAME //
+
+var li = document.getElementsByTagName('li');
+li[4].style.listStyle = 'none';
+li[4].style.padding = '12px 20px';
+li[4].style.border = '1px solid rgba(0,0,0,.125)'
+
 
 
 
