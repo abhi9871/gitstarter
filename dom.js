@@ -40,10 +40,28 @@
 
 // GETELEMENTSBYTAGNAME //
 
-var li = document.getElementsByTagName('li');
-li[4].style.listStyle = 'none';
-li[4].style.padding = '12px 20px';
-li[4].style.border = '1px solid rgba(0,0,0,.125)'
+// var li = document.getElementsByTagName('li');
+// li[4].style.listStyle = 'none';
+// li[4].style.padding = '12px 20px';
+// li[4].style.border = '1px solid rgba(0,0,0,.125)'
+
+// QUERYSELECTOR //
+
+// var secondItem = document.querySelector('.list-group-item:nth-child(2)');
+// secondItem.style.backgroundColor = 'green';
+
+// var thirdItem = document.querySelector('.list-group-item:nth-child(3)');
+// thirdItem.style.display = 'none';
+
+// QUERYSELECTORALL //
+
+var second = document.querySelectorAll('.list-group-item')[0];
+second.style.color = 'green';
+
+var odd = document.querySelectorAll('.list-group-item:nth-child(odd)');
+for(let i = 0; i < odd.length; i++){
+    odd[i].style.backgroundColor = 'green';
+}
 
 
 
