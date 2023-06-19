@@ -27,16 +27,16 @@ var headerTitle = document.getElementById('header-title');
 headerTitle.style.borderBottom = "solid 3px #000";
 
 // GETELEMENTBYCLASSNAME //
-// var items = document.getElementsByClassName('list-group-item');
-// console.log(items);
-// console.log(items[1]);
-// items[1].textContent = "Hello 2";
-// items[1].style.fontWeight = "bold";
-// items[1].style.backgroundColor = "yellow";
+var items = document.getElementsByClassName('list-group-item');
+items[2].style.backgroundColor = "green";
 
-var title = document.getElementsByClassName('title');
-title[0].style.fontWeight = "bold";
-title[0].style.color = "green";
+for(let item of items){
+    item.style.fontWeight = "bold";
+}
+
+// var title = document.getElementsByClassName('title');
+// title[0].style.fontWeight = "bold";
+// title[0].style.color = "green";
 
 
 
