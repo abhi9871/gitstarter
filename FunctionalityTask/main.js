@@ -12,14 +12,14 @@ function addItem(e) {
     e.preventDefault();
 
     //Get input value
-    var newItem = document.getElementById('item').value;
+    var newItem = document.getElementById('item');
 
     // Create a new li element
     var li = document.createElement('li');
     // Add class to li element
     li.className = 'list-group-item';
     // add text node with input value
-    li.appendChild(document.createTextNode(newItem));
+    li.appendChild(document.createTextNode(newItem.value));
 
     // Add an edit button element
     var editBtn = document.createElement('button');
@@ -44,6 +44,7 @@ function addItem(e) {
     // Append li to list
     itemList.appendChild(li);
 
+    newItem.value = '';
 }
 
     // Delete an item
