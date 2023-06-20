@@ -2,7 +2,7 @@ let form = document.getElementById('bookingForm');
 form.addEventListener('submit', submitForm);
 
 function submitForm(event){
-    // event.preventDefault(); // Prevent form submission to avoid page refresh
+    event.preventDefault(); // Prevent form submission to avoid page refresh
     var name = document.getElementById('name').value;
     var email = document.getElementById('mail').value;
     var phone = document.getElementById('phone').value;
@@ -22,7 +22,10 @@ function submitForm(event){
         var formDataString = JSON.stringify(formData);
 
         // Store the JSON string in localStorage
-        localStorage.setItem('formData', formDataString);
+        localStorage.setItem(email , formDataString);
 
-            form.reset();
+        // To show the user details at the bottom of the form
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(`${name} - ${email} - ${phone} - ${date} - ${time}`));
+        form.appendChild(li);
 }
