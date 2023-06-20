@@ -1,0 +1,26 @@
+body {
+    background-color: orange;
+    padding: 10px;
+}
+
+.form-center {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+ form {
+    border: 1px solid rgb(123, 86, 19);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+h2 {
+    color: orange;
+}
+
+input[type='submit'] {
+    color: white !important; 
+    width: 100%;
+}
