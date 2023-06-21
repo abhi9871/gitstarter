@@ -1,4 +1,5 @@
 let form = document.getElementById('bookingForm');
+let userList = document.getElementById('userList');
 form.addEventListener('submit', submitForm);
 
 function submitForm(event){
@@ -27,5 +28,15 @@ function submitForm(event){
         // To show the user details at the bottom of the form
         var li = document.createElement('li');
         li.appendChild(document.createTextNode(`${name} - ${email} - ${phone} - ${date} - ${time}`));
-        form.appendChild(li);
+        var delBtn = document.createElement('button');
+        delBtn.className = 'btn btn-info mx-2 my-2';
+        delBtn.appendChild(document.createTextNode('Delete'));
+        li.appendChild(delBtn);
+        userList.appendChild(li);
+        delBtn.addEventListener('click', function(e) {
+            var li = e.target.parentElement;
+            userList.removeChild(li);
+            localStorage.clear();
+            form.reset();
+        })    
 }
