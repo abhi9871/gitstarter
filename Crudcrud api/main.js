@@ -1,5 +1,6 @@
 let form = document.getElementById('bookingForm');
 let userList = document.getElementById('userList');
+let isEditing = false;  // Flag to indicate if we are editing an appointment
 form.addEventListener('submit', submitForm);
 
 function submitForm(event){
@@ -14,15 +15,24 @@ function submitForm(event){
         mail: email.value,
         phone: phone.value,
         };
-
+        
+        if(isEditing){
+            // Updating an appointment
+            let id = form.getAttribute('appointmentId');
+            let li = document.getElementById(id);
+            li.firstChild.textContent = `${formData.name} - ${formData.mail} - ${formData.phone}`;
+            editAppointments(id, formData);
+        }
+        else {
         // Create a post request using axios
-        axios.post('https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData', formData)
+        axios.post('https://crudcrud.com/api/c383180a7f984b12b2532ddba12d52fc/appointmentData', formData)
         .then(response => {
             console.log(response.data);
             showDetailsOnScreen(response.data);
         })
         .catch(err => console.log(err));
-        form.reset();
+    }
+    form.reset();
 }
 
 // show appointment details on user screen
@@ -48,17 +58,38 @@ function showDetailsOnScreen(data) {
      // Append list to a ul
      userList.appendChild(li);
 
+     // add event listener to delBtn
      delBtn.addEventListener('click', (e) => {
         let li = e.target.parentElement;
         let id = li.getAttribute('id');
         userList.removeChild(li);
         deleteAppointments(id);
      });
+
+     // add event listener to editBtn
+     editBtn.addEventListener('click', (e) => {
+        isEditing = true;
+        let name = document.getElementById('name');
+        let email = document.getElementById('mail');
+        let phone = document.getElementById('phone');
+        let li = e.target.parentElement;
+        let id = li.getAttribute('id');
+        axios.get(`https://crudcrud.com/api/c383180a7f984b12b2532ddba12d52fc/appointmentData/${id}`)
+        .then((response) => {
+            const data = response.data;
+            name.value = data.name,
+            email.value = data.mail,
+            phone.value = data.phone
+            
+            form.setAttribute('appointmentId', id)
+        })
+        .catch(err => console.log(err));
+     })
 }
 
 // Show appointment data on onload
 window.addEventListener('DOMContentLoaded', () => {
-    axios.get('https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData')
+    axios.get('https://crudcrud.com/api/c383180a7f984b12b2532ddba12d52fc/appointmentData')
     .then(response => {
         console.log(response.data);
         response.data.forEach(appointment => {
@@ -70,7 +101,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Delete an appointment
 function deleteAppointments(id){
-    axios.delete(`https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData/${id}`)
-    .then(response => console.log('Data has been deleted successfullly'))
+    axios.delete(`https://crudcrud.com/api/c383180a7f984b12b2532ddba12d52fc/appointmentData/${id}`)
+    .then(response => console.log('Data has been deleted'))
+    .catch(err => console.log(err));
+}
+
+// Edit an appointment
+function editAppointments(id, obj){
+    isEditing = false;
+    axios.put(`https://crudcrud.com/api/c383180a7f984b12b2532ddba12d52fc/appointmentData/${id}`, obj)
+    .then(response => {
+        console.log('Data has been updated');
+    })
     .catch(err => console.log(err));
 }
