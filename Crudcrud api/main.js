@@ -16,7 +16,7 @@ function submitForm(event){
         };
 
         // Create a post request using axios
-        axios.post('https://crudcrud.com/api/c491a48aff05444d9d1013ff43c7ac9c/appointmentData', formData)
+        axios.post('https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData', formData)
         .then(response => {
             console.log(response.data);
             showDetailsOnScreen(response.data);
@@ -30,6 +30,7 @@ function showDetailsOnScreen(data) {
      // To show the user details at the bottom of the form
      var li = document.createElement('li');
      li.className = 'py-2';
+     li.setAttribute('id', `${data._id}`);
      li.appendChild(document.createTextNode(`${data.name} - ${data.mail} - ${data.phone}`));
 
      // Add a delete button to a list
@@ -46,11 +47,18 @@ function showDetailsOnScreen(data) {
 
      // Append list to a ul
      userList.appendChild(li);
+
+     delBtn.addEventListener('click', (e) => {
+        let li = e.target.parentElement;
+        let id = li.getAttribute('id');
+        userList.removeChild(li);
+        deleteAppointments(id);
+     });
 }
 
 // Show appointment data on onload
 window.addEventListener('DOMContentLoaded', () => {
-    axios.get('https://crudcrud.com/api/c491a48aff05444d9d1013ff43c7ac9c/appointmentData')
+    axios.get('https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData')
     .then(response => {
         console.log(response.data);
         response.data.forEach(appointment => {
@@ -59,3 +67,10 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.log(err));
 })
+
+// Delete an appointment
+function deleteAppointments(id){
+    axios.delete(`https://crudcrud.com/api/7a6a08e2bade4bc19304eab0db04d13b/appointmentData/${id}`)
+    .then(response => console.log('Data has been deleted successfullly'))
+    .catch(err => console.log(err));
+}
