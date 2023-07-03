@@ -8,6 +8,7 @@
     <title>Sell Products</title>
 </head>
 <body>
+  <!-- Header is creating with the heading named "Sell Products" -->
     <header id="main-header" class="bg-info-subtle text-center p-4 mb-3">
         <div class="container">
           <div class="row justify-content-center align-items-center">
@@ -17,24 +18,33 @@
           </div>
         </div>
       </header>
+      <!-- Creating a form inside a container -->
       <div class="container">
         <form class="row g-3" id="sellingProduct">
+
+          <!-- Creating a field for entering a product price -->
         <div class="col-md-3">
           <label for="sellingPrice" class="form-label fw-bold">Selling Price:</label>
           <input type="number" class="form-control" id="sellingPrice">
         </div>
+
+        <!-- Creating a field for entering a product name -->
         <div class="col-md-3">
           <label for="productName" class="form-label fw-bold">Product Name:</label>
           <input type="text" class="form-control" id="productName">
         </div>
+
+        <!-- Creating an input of submit for submitting the form -->
           <div class="col-md-2 mt-5">
             <input type="submit" class="btn btn-primary mb-2" id="addProduct" value="Add Product">
           </div>
       </form>
+
+      <!-- Showing all the lists and price inside this div -->
         <div id="main" class="card card-body">
             <h2 class="title">Products</h2>
             <ul id="productList"></ul>
-            <h5 id="productPrice">Total value worth of Products: Rs. 0</h5>
+            <h5 id="productPrice">Total value worth of products: Rs. 0</h5>
     </div>
     </div>
     <script src="./product.js"></script>
